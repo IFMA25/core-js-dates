@@ -229,18 +229,9 @@ function getNextFridayThe13th(date) {
  * Date(2024, 5, 1) => 2
  * Date(2024, 10, 10) => 4
  */
-function getQuarter(/* date */) {
-  // const month = date.getMonth();
-  // if (month < 3) {
-  //   return 1;
-  // }
-  // if (month < 6) {
-  //   return 2;
-  // }
-  // if (month < 9) {
-  //   return 3;
-  // }
-  // return 4;
+function getQuarter(date) {
+  const month = date.getMonth() + 1;
+  return Math.ceil(month / 3);
 }
 
 /**
