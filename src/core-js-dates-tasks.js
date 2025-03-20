@@ -229,12 +229,12 @@ function getNextFridayThe13th(date) {
  * Date(2024, 5, 1) => 2
  * Date(2024, 10, 10) => 4
  */
-function getQuarter(/* date */) {
-  // const year = date.getFullYear();
-  // const numberOfYear = new Date(year + 1, 0, 1) - new Date(year, 0, 1);
-  // const numberOfDate = date.getTime() - new Date(year, 0, 1).getTime();
-  // const quarter = Math.floor((numberOfDate * 4) / numberOfYear) + 1;
-  // return quarter;
+function getQuarter(date) {
+  const year = date.getFullYear();
+  const numberOfYear = new Date(year + 1, 0, 1) - new Date(year, 0, 1);
+  const numberOfDate = date.getTime() - new Date(year, 0, 1).getTime();
+  const quarter = Math.floor((numberOfDate * 4) / numberOfYear) + 1;
+  return quarter;
 }
 
 /**
