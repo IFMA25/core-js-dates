@@ -189,8 +189,16 @@ function getCountWeekendsInMonth(month, year) {
  * Date(2024, 0, 31) => 5
  * Date(2024, 1, 23) => 8
  */
-function getWeekNumberByDate(/* date */) {
-  throw new Error('Not implemented');
+function getWeekNumberByDate(date) {
+  const year = date.getFullYear();
+
+  const firstDayOfYear = new Date(year, 0, 3);
+
+  const firstMonday =
+    firstDayOfYear.getTime() - firstDayOfYear.getDay() * 86400000;
+
+  const result = Math.ceil((date.getTime() - firstMonday) / (86400000 * 7));
+  return result;
 }
 
 /**
@@ -204,8 +212,16 @@ function getWeekNumberByDate(/* date */) {
  * Date(2024, 0, 13) => Date(2024, 8, 13)
  * Date(2023, 1, 1) => Date(2023, 9, 13)
  */
-function getNextFridayThe13th(/* date */) {
-  throw new Error('Not implemented');
+function getNextFridayThe13th(date) {
+  const month = date.getMonth();
+  const year = date.getFullYear();
+
+  for (let i = month; i <= 11; i += 1) {
+    if (new Date(year, i, 13).getDay() === 5) {
+      return new Date(year, i, 13);
+    }
+  }
+  return null;
 }
 
 /**
@@ -219,8 +235,12 @@ function getNextFridayThe13th(/* date */) {
  * Date(2024, 5, 1) => 2
  * Date(2024, 10, 10) => 4
  */
-function getQuarter(/* date */) {
-  throw new Error('Not implemented');
+function getQuarter(date) {
+  const year = date.getFullYear();
+  const numberOfYear = new Date(year + 1, 0, 1) - new Date(year, 0, 1);
+  const numberOfDate = date.getTime() - new Date(year, 0, 1).getTime();
+  const quarter = Math.floor((numberOfDate * 4) / numberOfYear) + 1;
+  return quarter;
 }
 
 /**
@@ -241,8 +261,30 @@ function getQuarter(/* date */) {
  * { start: '01-01-2024', end: '15-01-2024' }, 1, 3 => ['01-01-2024', '05-01-2024', '09-01-2024', '13-01-2024']
  * { start: '01-01-2024', end: '10-01-2024' }, 1, 1 => ['01-01-2024', '03-01-2024', '05-01-2024', '07-01-2024', '09-01-2024']
  */
-function getWorkSchedule(/* period, countWorkDays, countOffDays */) {
-  throw new Error('Not implemented');
+function getWorkSchedule(period, countWorkDays, countOffDays) {
+  const startDay = new Date(
+    period.start.split('-').reverse().join('-')
+  ).getTime();
+  const endDay = new Date(period.end.split('-').reverse().join('-')).getTime();
+  const result = [];
+  let currentDay = startDay;
+
+  while (currentDay <= endDay) {
+    for (let i = 0; i < countWorkDays; i += 1) {
+      if (currentDay > endDay) break;
+      result.push(
+        new Date(currentDay).toLocaleDateString().split('.').join('-')
+      );
+      currentDay += 86400000;
+    }
+
+    for (let i = 0; i < countOffDays; i += 1) {
+      if (currentDay > endDay) break;
+      currentDay += 86400000;
+    }
+  }
+
+  return result;
 }
 
 /**
