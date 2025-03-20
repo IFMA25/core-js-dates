@@ -162,16 +162,16 @@ function formatDate(date) {
  * 12, 2023 => 10
  * 1, 2024 => 8
  */
-function getCountWeekendsInMonth(/* month, year */) {
-  // const quantDay = new Date(year, month, 0).getDate();
-  // let count = 0;
-  // for (let i = 1; i <= quantDay; i += 1) {
-  //   const day = new Date(year, month - 1, i).getDay();
-  //   if (day === 0 || day === 6) {
-  //     count += 1;
-  //   }
-  // }
-  // return count;
+function getCountWeekendsInMonth(month, year) {
+  const quantDay = new Date(year, month, 0).getDate();
+  let count = 0;
+  for (let i = 1; i <= quantDay; i += 1) {
+    const day = new Date(year, month - 1, i).getDay();
+    if (day === 0 || day === 6) {
+      count += 1;
+    }
+  }
+  return count;
 }
 
 /**
@@ -187,13 +187,13 @@ function getCountWeekendsInMonth(/* month, year */) {
  * Date(2024, 0, 31) => 5
  * Date(2024, 1, 23) => 8
  */
-function getWeekNumberByDate(date) {
-  date.setDate(date.getDate() + 4 - (date.getDay() || 7));
-  date.setHours(0, 0, 0, 0);
-  const year = date.getFullYear();
-  const firstDay = new Date(year, 0, 1);
-  const result = Math.ceil(((date - firstDay) / 86400000 + 1) / 7);
-  return result;
+function getWeekNumberByDate(/* date */) {
+  // date.setDate(date.getDate() + 4 - (date.getDay() || 7));
+  // date.setHours(0, 0, 0, 0);
+  // const year = date.getFullYear();
+  // const firstDay = new Date(year, 0, 1);
+  // const result = Math.ceil(((date - firstDay) / 86400000 + 1) / 7);
+  // return result;
 }
 
 /**
@@ -207,15 +207,15 @@ function getWeekNumberByDate(date) {
  * Date(2024, 0, 13) => Date(2024, 8, 13)
  * Date(2023, 1, 1) => Date(2023, 9, 13)
  */
-function getNextFridayThe13th(date) {
-  const month = date.getMonth();
-  const year = date.getFullYear();
-  for (let i = month; i <= 11; i += 1) {
-    if (new Date(year, i, 13).getDay() === 5) {
-      return new Date(year, i, 13);
-    }
-  }
-  return null;
+function getNextFridayThe13th(/* date */) {
+  // const month = date.getMonth();
+  // const year = date.getFullYear();
+  // for (let i = month; i <= 11; i += 1) {
+  //   if (new Date(year, i, 13).getDay() === 5) {
+  //     return new Date(year, i, 13);
+  //   }
+  // }
+  // return null;
 }
 
 /**
@@ -229,12 +229,12 @@ function getNextFridayThe13th(date) {
  * Date(2024, 5, 1) => 2
  * Date(2024, 10, 10) => 4
  */
-function getQuarter(date) {
-  const year = date.getFullYear();
-  const numberOfYear = new Date(year + 1, 0, 1) - new Date(year, 0, 1);
-  const numberOfDate = date.getTime() - new Date(year, 0, 1).getTime();
-  const quarter = Math.floor((numberOfDate * 4) / numberOfYear) + 1;
-  return quarter;
+function getQuarter(/* date */) {
+  // const year = date.getFullYear();
+  // const numberOfYear = new Date(year + 1, 0, 1) - new Date(year, 0, 1);
+  // const numberOfDate = date.getTime() - new Date(year, 0, 1).getTime();
+  // const quarter = Math.floor((numberOfDate * 4) / numberOfYear) + 1;
+  // return quarter;
 }
 
 /**
