@@ -264,7 +264,12 @@ function getWorkSchedule(period, countWorkDays, countOffDays) {
       if (currentDay > endDay) break;
 
       result.push(
-        new Date(currentDay).toLocaleDateString().split('.').join('-')
+        new Date(currentDay)
+          .toISOString()
+          .slice(0, 10)
+          .split('-')
+          .reverse()
+          .join('-')
       );
 
       currentDay += 86400000;
