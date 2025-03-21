@@ -72,7 +72,7 @@ function getDayName(date) {
  */
 function getNextFriday(date) {
   const indexFriday = 5;
-  const indexDay = new Date(date).getDay();
+  const indexDay = new Date(date).getUTCDay();
   const nextFriday = (indexFriday - indexDay + 7) % 7;
   const nexDayFriday =
     nextFriday === 0
@@ -262,10 +262,12 @@ function getWorkSchedule(period, countWorkDays, countOffDays) {
   while (currentDay <= endDay) {
     for (let i = 0; i < countWorkDays; i += 1) {
       if (currentDay > endDay) break;
+
+      currentDay += 86400000;
+
       result.push(
         new Date(currentDay).toLocaleDateString().split('.').join('-')
       );
-      currentDay += 86400000;
     }
     for (let i = 0; i < countOffDays; i += 1) {
       if (currentDay > endDay) break;
