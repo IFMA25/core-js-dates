@@ -263,11 +263,11 @@ function getWorkSchedule(period, countWorkDays, countOffDays) {
     for (let i = 0; i < countWorkDays; i += 1) {
       if (currentDay > endDay) break;
 
-      currentDay += 86400000;
-
       result.push(
         new Date(currentDay).toLocaleDateString().split('.').join('-')
       );
+
+      currentDay += 86400000;
     }
     for (let i = 0; i < countOffDays; i += 1) {
       if (currentDay > endDay) break;
