@@ -56,7 +56,7 @@ function getDayName(date) {
     'Friday',
     'Saturday',
   ];
-  return dayOfWeek[new Date(date).getDay()];
+  return dayOfWeek[new Date(date).getUTCDay()];
 }
 
 /**
